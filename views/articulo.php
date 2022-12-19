@@ -12,7 +12,7 @@
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title"><button class="btn btn-success" onclick="mostrarForm(true)"><i class="fa fa-plus-circle"></i> Agregar Articulo</button></h1>
+                          <h1 class="box-title">Articulo <button class="btn btn-success" id="btnagregar" onclick="mostrarForm(true)"><i class="fa fa-plus-circle"></i>Agregar</button></h1>
                     </div>
 
                     <!-- /.box-header --> 
@@ -43,7 +43,7 @@
                         </table>
                     </div>
 
-                    <div class="panel-body" style="height: 400px;" id="formularioregistros">
+                    <div class="panel-body"  id="formularioregistros">
 
                       <form name="formulario" id="formulario" method="POST">
 
@@ -71,11 +71,19 @@
                         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <label>Imagen:</label>
                           <input type="file" name="imagen" id="imagen" class="form-control" >
+                          <input type="hidden" name="imagenactual" id="imagenactual">
+                          <br>
+                          <img src="" width="150px" height="120px" name="imagenmuestra" id="imagenmuestra">
                         </div>
 
                         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
                           <label>Codigo:</label>
                           <input type="text" name="codigo" id="codigo" class="form-control" placeholder="Codigo de barras" >
+                          <button class="btn btn-success" type="button" id="generar" onclick="generarbarcode()">Generar</button>
+                          <button class="btn btn-info" type="button" onclick="imprimir()">Imprimir</button>
+                          <div id="print">
+                          <svg id="barcode"></svg>
+                          </div>
                         </div>
 
                         <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -99,4 +107,6 @@
  require 'footer.php';//requerimos el archivo footer.php
 ?>
 
+<script type="text/javascript" src="./../public/js/JsBarcode.all.min.js"></script>
+<script type="text/javascript" src="./../public/js/jquery.PrintArea.js"></script>
 <script type="text/javascript" src="scripts/articulo.js "></script>

@@ -17,14 +17,19 @@ switch( $_GET["op"]){
     case 'guardaryeditar':
         //verifica si no existe imagen o mo fue seleccionada
         if(!file_exists($_FILES['imagen']['tmp_name']) || !is_uploaded_file($_FILES['imagen']['tmp_name'])){
-            $imagen = "";
+            $imagen = $_POST["imagenactual"];
         }else{
+            // if(!empty($_POST["imagenactual"])){
+            // unlink ("./../files/articulos/".$_POST["imagenactual"]);
+
             //verifica extencion y lo optiene
             $ext = explode(".",$_FILES['imagen']['name']);
             if($_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/png" ){
                 $imagen =round(microtime(true)) .'.'. end($ext); //TODO Asignar nombre diferente y concatenera con extencion
                 move_uploaded_file($_FILES["imagen"]["tmp_name"], "./../files/articulos/".$imagen);
             }
+
+            
         }
         if(empty($idarticulo)){//verifica si variable idcategoria esta vacia
             $rspta = $articulo->insertar($idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen);

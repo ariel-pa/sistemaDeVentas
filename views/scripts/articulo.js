@@ -15,6 +15,8 @@ function init(){
         $("#idcategoria").html(data);
         $("#idcategoria").selectpicker('refresh');
     })
+
+    $("#imagenmuestra").hide();
 }
 
 //funcion limpiar
@@ -24,6 +26,10 @@ function limpiar(){
     $("#nombre").val("");
     $("#descripcion").val("");
     $("#stock").val("");
+    $("#imagenmuestra").attr("src", "");
+    $("#imagenactual").val("");
+    $("#print").hide();
+    $("#idarticulo").val("");
 }
 
 //funcion mostrar formulario o registros segun el estado   
@@ -110,11 +116,21 @@ function mostrar(idarticulo){
         mostrarForm(true);
         // console.log("articulos",data);
         $("#idcategoria").val(data.idcategoria);
+        $("#idcategoria").selectpicker('refresh');
+
         $("#codigo").val(data.codigo);
         $("#nombre").val(data.nombre);
         $("#stock").val(data.stock);
         $("#idarticulo").val(data.idarticulo);
+
         
+        $("#imagenmuestra").show();
+        $("#imagenmuestra").attr("src", "./../files/articulos/"+data.imagen);
+        $("#imagenactual").val(data.imagen);//TODO:Se invia esta img para que no este vacio al momento de guardar
+
+        $("#generar").hide();
+        $("#generarbarcode").hide();
+        generarbarcode();
     });
 }
 //funcion para desactivar categoria
@@ -139,5 +155,14 @@ function activar(idarticulo){
             })
         }
     });
+}
+
+function generarbarcode(){
+    JsBarcode("#barcode", $("#codigo").val());
+    $("#print").show();
+}
+
+function imprimir(){
+    $("#print").printArea();
 }
 init();

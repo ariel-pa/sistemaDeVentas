@@ -27,6 +27,7 @@ function mostrarForm(flag){
         $("#formularioregistros").show();
         $("#btnGuardar").prop("disabled", false);
         $("#btnagregar").hide();
+        
     }
     else{
         $("#listadoregistros").show();

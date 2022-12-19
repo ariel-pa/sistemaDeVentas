@@ -19,7 +19,7 @@ class Articulo{
 
     //metodo para editar un registro
     public function editar($idarticulo, $idcategoria, $codigo, $nombre, $stock, $descripcion, $imagen){
-        $sql = "UPDATE articulo SET idcategoria='$idcategoria', codigo='$codigo' nombre='$nombre', stock='$stock', descripcion ='$descripcion',imagen='$imagen' 
+        $sql = "UPDATE articulo SET idcategoria='$idcategoria', codigo='$codigo', nombre='$nombre', stock='$stock', descripcion ='$descripcion',imagen='$imagen' 
         WHERE idarticulo = '$idarticulo'";
 
         return ejecutarConsulta($sql);
