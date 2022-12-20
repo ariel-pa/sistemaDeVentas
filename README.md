@@ -5,6 +5,7 @@ Se debe instalar XAMPP para gestionar la base de datos.
 El script de la DB se enuentra en la carpeta **dbsistema ** con la extención .sql
 
 ####Introdución:
+
 El proyecto sistemaDeVentas está elaborado con las siguientes tecnologías de desarrollo.
 - MYSQL
 - PHP7
