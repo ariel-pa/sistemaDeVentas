@@ -11,6 +11,8 @@ El proyecto sistemaDeVentas está elaborado con las siguientes tecnologías de d
 - Jquery
 - Ajax
 - Javascript
+
+
 Se utilizo la estructura MVC con la programacion orientada a objetos (POO)
 
 #####Click [Aquí](https://github.com/ariel-pa/sistemaDeVentas/tree/main "Aquí")
