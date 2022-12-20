@@ -1,10 +1,10 @@
-##Bienvenido al repositorio oficial de arial-pa!
+## Bienvenido al repositorio oficial de arial-pa!
 
-**Instalación:**
+** Instalación: **
 Se debe instalar XAMPP para gestionar la base de datos.
 El script de la DB se enuentra en la carpeta **dbsistema ** con la extención .sql
 
-####Introdución:
+#### Introdución:
 
 El proyecto sistemaDeVentas está elaborado con las siguientes tecnologías de desarrollo.
 - MYSQL
@@ -16,5 +16,5 @@ El proyecto sistemaDeVentas está elaborado con las siguientes tecnologías de d
 
 Se utilizo la estructura MVC con la programacion orientada a objetos (POO)
 
-#####Click [Aquí](https://github.com/ariel-pa/sistemaDeVentas/tree/main "Aquí")
+##### Click [Aquí](https://github.com/ariel-pa/sistemaDeVentas/tree/main "Aquí")
  
