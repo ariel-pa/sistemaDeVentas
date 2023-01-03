@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../models/Usuario.php";
 
 //Instanciar el modelo Persona.
@@ -110,7 +111,7 @@ switch( $_GET["op"]){
 
         //Mostrar la lista de permisos en la vista
         while($reg = $rspta->fetch_object()){
-            //TODO:Realizamos uns condiconal para ver si exixten los permisos amrcados
+            //TODO:Realizamos uns condiconal para ver si exixten los permisos marcados
             $sw = in_array($reg->idpermiso, $valores)?'checked':'';//Ver si permisos se encuentran almacenados dentro de $valores
 
             //permiso[]: es un array de permisos, cada permiso tendra una identificación unica
@@ -118,5 +119,55 @@ switch( $_GET["op"]){
         }
     break;
 
+    case 'verificar':
+        //Optener datos del formulario login
+         $login = $_POST['loginAcceso'];
+         $clave = $_POST['claveAcceso'];
+
+         //Hash SHA256 en la contraseña
+         $claveHash = hash("SHA256", $clave);
+         $rspta = $usuario->verificar($login, $claveHash);
+
+         $fetch = $rspta->fetch_object();
+        //Verificar objeto fetch no este vacio
+         if(isset($fetch)){
+            //Decalramos las variables de sesión
+            $_SESSION['idusuario'] = $fetch->idusuario;
+            $_SESSION['nombre'] = $fetch->nombre;
+            $_SESSION['imagen'] = $fetch->imagen;
+            $_SESSION['login'] = $fetch->login;
+
+            //Obtiene todos los permisos del usuario logueado
+            $permisosUsuario = $usuario->listarPermisosMarcados($fetch->idusuario);
+
+            //Declaramos el array para almacenar todos los permisos marcados
+            $valores = array();
+
+            //Almacenamos los permisos marcados en el array
+            while($permiso = $permisosUsuario->fetch_object()){
+                array_push($valores, $permiso->idpermiso);
+            }
+
+            //Determinamos los acceso del usuario
+            in_array(1, $valores)?$_SESSION['escritorio']=1:$_SESSION['escritorio']=0;
+            in_array(2, $valores)?$_SESSION['almacen']=1:$_SESSION['almacen']=0;
+            in_array(3, $valores)?$_SESSION['compras']=1:$_SESSION['compras']=0;
+            in_array(4, $valores)?$_SESSION['ventas']=1:$_SESSION['ventas']=0;
+            in_array(5, $valores)?$_SESSION['acceso']=1:$_SESSION['acceso']=0;
+            in_array(6, $valores)?$_SESSION['consultacompras']=1:$_SESSION['consultacompras']=0;
+            in_array(7, $valores)?$_SESSION['consultaventas']=1:$_SESSION['consultaventas']=0;
+         }
+         echo json_encode($fetch); 
+    break;
+
+    case 'salir':
+        //Limpieza de todas las variables de sesión
+        session_unset();
+        //Destruimos las sesiones
+        session_destroy();
+        //Redireccionamos al login
+        header("location: ../index.php");
+
+    break;
 }
 ?>

@@ -15,7 +15,7 @@ class Usuario{
         VALUES ('$nombre', '$tipo_documento', '$num_documento', '$direccion', '$telefono', '$email', '$cargo', '$login', '$clave', '$imagen', '1')";
 
         // return ejecutarConsulta($sql);//devuelbe 1 o 0 para ver si se ejecuto la consulta
-        $idusuarioNew = ejecutarConsulta_retornarID($sql);//TODO: Retorna id una ves echo la consulta de registro
+        $idusuarioNew = ejecutarConsulta_retornarID($sql);//TODO: Retorna id una ves realizado la consulta de registro.
 
         $num_elemento = 0;
         $sw = true;
@@ -87,6 +87,13 @@ class Usuario{
     //Metodo para mostrar los permisos marcados de un usuario      
     public function listarPermisosMarcados($idusuario){
         $sql = "SELECT * FROM usuario_permiso WHERE idusuario='$idusuario'";
+
+        return ejecutarConsulta($sql);
+    }
+
+    //Función para verificar el acceso al sistema mediante login
+    public function verificar($login, $clave){
+        $sql = "SELECT idusuario, nombre, tipo_documento, num_documento, telefono, email, cargo, imagen, login FROM usuario WHERE login='$login' AND clave='$clave' AND condicion='1' ";
 
         return ejecutarConsulta($sql);
     }
