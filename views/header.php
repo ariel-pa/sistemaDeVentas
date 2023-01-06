@@ -1,4 +1,4 @@
-//Verificar si sesion ya fue iniciada
+<!-- Verificar si sesion ya fue iniciada -->
 <?php
   if(strlen(session_id()) < 1)
     session_start();
@@ -23,7 +23,7 @@
     <link rel="apple-touch-icon" href="../public/img/apple-touch-icon.png">
     <link rel="shortcut icon" href="../public/img/favicon.ico">   
 
-      <!--DATATABLES-->  //TODO: Llamado de datatables
+      <!--DATATABLES //TODO: Llamado de datatables -->  
       <link rel="stylesheet" type="text/css" href="../public/datatables/jquery.dataTables.min.css">
       <link rel="stylesheet" type="text/css" href="../public/datatables/buttons.dataTables.min.css" rel="stylesheet">
       <link rel="stylesheet" type="text/css" href="../public/datatables/responsive.dataTables.min.css" rel="stylesheet">
